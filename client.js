@@ -16,7 +16,7 @@ async function getFilesEachDirectory(directories) {
   let promises = directories.map(async (directory) => {
     return await getRootDirectoryFiles(directory);
   });
-  
+
   return Promise.all(promises);
 }
 
@@ -25,7 +25,7 @@ async function main() {
     let rootDirectory = await fetchRootDirectory();
     let directories = rootDirectory.items.filter((item) => item.isDir === true);
     let filesEachDirectory = await getFilesEachDirectory(directories);
-    console.log(filesEachDirectory);
+    console.log(JSON.stringify(filesEachDirectory,null,2));
   } catch (error) {
     console.error("An error occurred:", error);
   }
